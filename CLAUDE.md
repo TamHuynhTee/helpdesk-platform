@@ -28,7 +28,9 @@ PostgreSQL 16 with Row-Level Security. TypeScript strict everywhere.
 - DTOs and zod schemas live in libs/shared/contracts; validate at the API boundary.
 - Integration tests run against a real Postgres. Do not mock the database.
 - Jest for unit and integration, Playwright for e2e.
-- Conventional Commits. One small PR-sized change at a time.
+- Commit format (enforced by commitlint via a husky hook): `<type>(<optional scope>): <description>`.
+  Types: `feat|fix|chore|docs|infra|update|merge|conflict`. Scope is one word, e.g. `feat(auth): add login endpoint`.
+- One small PR-sized change at a time.
 - Docs and code comments in English. Non-obvious decisions get an ADR in docs/adr/NNNN-title.md.
 
 ## Workflow
