@@ -433,9 +433,6 @@ importers:
 
   libs/data-access/prisma:
     dependencies:
-      '@prisma/client':
-        specifier: ^6.19.3
-        version: 6.19.3(prisma@6.19.3(typescript@6.0.3))(typescript@6.0.3)
       tslib:
         specifier: ^2.3.0
         version: 2.9.1
