@@ -8,7 +8,7 @@ Nx monorepo, pnpm. Next.js (apps/web), NestJS + Prisma (apps/api, apps/worker),
 PostgreSQL 16 with Row-Level Security. TypeScript strict everywhere.
 
 ## Commands
-- `docker compose up -d`: Postgres, Redis, MinIO, Mailpit
+- `docker compose up -d`: Postgres, Redis, SeaweedFS, Mailpit
 - `pnpm nx serve api` / `pnpm nx dev web` / `pnpm nx serve worker`
 - `pnpm nx run-many -t lint test build`
 - `pnpm nx test <project>`: run one project's tests
@@ -30,6 +30,10 @@ PostgreSQL 16 with Row-Level Security. TypeScript strict everywhere.
 - Jest for unit and integration, Playwright for e2e.
 - Conventional Commits. One small PR-sized change at a time.
 - Docs and code comments in English. Non-obvious decisions get an ADR in docs/adr/NNNN-title.md.
+
+## Git branching
+- Every feature, fix or update starts on its own branch cut from `main` (e.g. `feat/<name>`, `fix/<name>`, `chore/<name>`).
+- Never commit directly to `main` and never merge into `main` yourself. Merging happens through a reviewed PR by the developer.
 
 ## Workflow
 - For work touching more than 3 files, post a plan first and wait for approval.

@@ -6,7 +6,7 @@ Multi-tenant helpdesk (Zendesk-like), built with Nx, Next.js, NestJS, Prisma and
 
 - Node.js 24+
 - pnpm 12+ (`packageManager` is pinned in `package.json`)
-- Docker (for Postgres, Redis, MinIO and Mailpit)
+- Docker (for Postgres, Redis, SeaweedFS and Mailpit)
 
 ## Local setup
 
@@ -23,7 +23,7 @@ Services started by Docker Compose:
 | --- | --- | --- |
 | Postgres 16 | 5432 | Roles `app_owner` (migrations) and `app_user` (runtime, no RLS bypass) are created on first start |
 | Redis | 6379 | BullMQ, introduced at the milestone that needs it |
-| MinIO | 9000 / 9001 | S3-compatible storage; console on 9001 |
+| SeaweedFS | 8333 | S3-compatible storage (MinIO images are no longer published) |
 | Mailpit | 1025 / 8025 | SMTP sink; web UI on 8025 |
 
 The role-init script only runs on the first start of an empty volume. To reset: `docker compose down -v && docker compose up -d`.
