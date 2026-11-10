@@ -54,8 +54,7 @@
     }
   },
   "dependencies": {
-    "tslib": "^2.3.0",
-    "@prisma/client": "^6.19.3"
+    "tslib": "^2.3.0"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"

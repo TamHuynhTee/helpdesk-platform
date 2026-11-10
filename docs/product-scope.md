@@ -18,7 +18,7 @@ This project is a learning vehicle: a multi-tenant helpdesk SaaS built by one de
 | Backend | NestJS + Prisma | REST API, OpenAPI generated |
 | Database | PostgreSQL 16 + RLS | Shared schema, `tenant_id` on every tenant-owned row |
 | Queue / cache | BullMQ + Redis | Proposed; introduced at the milestone that needs it |
-| File storage | S3-compatible (MinIO locally) | Proposed; attachments only |
+| File storage | S3-compatible (SeaweedFS locally) | Proposed; attachments only |
 | Auth | Email + password, JWT access + refresh | Proposed; no SSO in MVP |
 
 ### Guiding principles

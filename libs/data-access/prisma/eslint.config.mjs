@@ -9,6 +9,9 @@ export default [
         'error',
         {
           ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}'],
+          // Declared at the workspace root only: a lib-level @prisma/client link
+          // breaks `prisma generate` with pnpm ("Could not resolve @prisma/client").
+          ignoredDependencies: ['@prisma/client'],
         },
       ],
     },
