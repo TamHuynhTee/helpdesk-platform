@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: helpdesk
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d helpdesk"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://app_user:app_user_dev_password@localhost:5432/helpdesk
+      MIGRATE_DATABASE_URL: postgresql://app_owner:app_owner_dev_password@localhost:5432/helpdesk
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Create DB roles
+        run: ./infra/postgres/init-roles.sh
+        env:
+          PGHOST: localhost
+          POSTGRES_DB: helpdesk
+          POSTGRES_USER: postgres
+          PGPASSWORD: postgres
+          APP_OWNER_PASSWORD: app_owner_dev_password
+          APP_USER_PASSWORD: app_user_dev_password
+
+      - uses: nrwl/nx-set-shas@v4
+
+      - run: pnpm nx affected -t lint test build

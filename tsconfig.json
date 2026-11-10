@@ -1,0 +1,41 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/web"
+    },
+    {
+      "path": "./apps/api"
+    },
+    {
+      "path": "./apps/worker"
+    },
+    {
+      "path": "./libs/shared/contracts"
+    },
+    {
+      "path": "./libs/shared/ui"
+    },
+    {
+      "path": "./libs/api/tenancy"
+    },
+    {
+      "path": "./libs/api/auth"
+    },
+    {
+      "path": "./libs/api/tickets"
+    },
+    {
+      "path": "./libs/api/email"
+    },
+    {
+      "path": "./libs/api/sla"
+    },
+    {
+      "path": "./libs/data-access/prisma"
+    }
+  ],
+  "compilerOptions": {}
+}

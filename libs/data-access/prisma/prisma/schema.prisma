@@ -1,0 +1,53 @@
+// Design-level schema lives in docs/data-model.md. Models are added per milestone (M1+).
+// Runtime connects as app_user (DATABASE_URL); Prisma Migrate connects as app_owner
+// (MIGRATE_DATABASE_URL, used through directUrl).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("MIGRATE_DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  AGENT
+  @@map("role")
+}
+enum TicketStatus {
+  NEW
+  OPEN
+  PENDING
+  SOLVED
+  CLOSED
+  @@map("ticket_status")
+}
+enum Priority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+  @@map("priority")
+}
+enum Channel {
+  EMAIL
+  PORTAL
+  WEB
+  API
+  @@map("channel")
+}
+enum MessageKind {
+  PUBLIC_REPLY
+  INTERNAL_NOTE
+  @@map("message_kind")
+}
+enum AuthorType {
+  AGENT
+  REQUESTER
+  SYSTEM
+  @@map("author_type")
+}
